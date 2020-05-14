@@ -34,3 +34,17 @@ class JsParse
         puts 'ERROR: '.red + "line #{line_num}, missing space before open brace."
         true
       end
+
+      def space_in_line?(line, line_num)
+        return false unless /.+[\w]\s\s.+/.match(line)
+    
+        puts 'ERROR: '.red + "line #{line_num}, check for double spaces."
+        true
+      end
+    
+      def space_end_line?(line, line_num)
+        return false unless /\s$/.match(line)
+    
+        puts 'ERROR: '.red + "line #{line_num}, remove spaces at the end of the line."
+        true
+      end
