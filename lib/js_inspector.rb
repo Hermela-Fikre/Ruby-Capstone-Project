@@ -48,3 +48,22 @@ class JsParse
         puts 'ERROR: '.red + "line #{line_num}, remove spaces at the end of the line."
         true
       end
+
+      
+  def check_braces
+    diff = (@open_brace - @close_brace).abs
+    if diff.negative?
+      puts 'ERROR: '.red + "Number of missing open braces : #{diff}."
+    elsif diff.positive?
+      puts 'ERROR: '.red + "Number of missing close braces : #{diff}."
+    end
+    true
+  end
+
+  def spaces_around?(line, line_num)
+    return false unless %r{\S\+|\+\S|\S\-|\-\S|\S\*|\*\S|\S\=|\=\S|\S/|/\S} =~ line
+
+    puts 'ERROR: '.red + "line #{line_num}, expected spaces around operator." unless /\=\=\=|\=\=/ =~ line
+    true
+  end
+end
