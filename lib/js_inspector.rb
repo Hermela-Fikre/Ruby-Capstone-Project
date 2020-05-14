@@ -21,3 +21,16 @@ class JsParse
         true
       end
     
+      def missing_semicolon?(line, line_num)
+        return false unless /^[^\n|\}|function](?:(?!;).)*$/.match(line)
+    
+        puts 'ERROR: '.red + "line #{line_num}, missing semicolon at the end of line."
+        true
+      end
+    
+      def space_before_braces?(line, line_num)
+        return false unless /\S\{/.match(line)
+    
+        puts 'ERROR: '.red + "line #{line_num}, missing space before open brace."
+        true
+      end
